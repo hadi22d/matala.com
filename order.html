@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>alert("Welcome")
+          function cnt(a,b,c,d,e){
+              var typet= document.getElementsByName("type");
+              var color= document.getElementsByName("color");
+              color = color[0].value;
+              var size= document.getElementsByName("size");
+              var logo= document.getElementsByName("logo");
+              var amount= document.getElementById("amount").value;
+              var lp=Number(0);
+              for(var i = 0 ;i < typet.length; i++){
+                      var flag = false;
+                      if(typet[i].checked){
+                         typet= typet[i].value;
+                         flag=true;
+                          break;
+                      }
+              }
+              if (flag==false){
+                  typet=Number(0);
+              }
+              for(var i = 0; i < size.length; i++){
+                  var flag=false;
+                  if(size[i].checked){
+                      size=size[i].value;
+                      flag=true;
+                      break;
+                  }  
+              }
+                  if (flag==false){
+                      size=Number(0);
+                  }
+              for(var i = 0; i < logo.length; i++){
+                  if(logo[i].checked){
+                      lp+=Number(logo[i].value);
+                  } 
+              }
+              
+
+          console.log(typet);
+          console.log(color);
+          console.log(size);
+          console.log(lp);
+          console.log(amount);
+
+          var calculate = Number(size)*(Number(typet)+Number(color)+Number(lp));
+          var result = Number(amount)*Number(calculate);
+          console.log(result);
+
+          printrResult(result);
+      
+          }
+          function printrResult(result){
+              var resultDiv= document.getElementById("resultDiv");
+              resultDiv.innerText = "price: " + result;
+           
+          }
+      </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+        input[type=text], select, textarea {
+          width: 30%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
+        
+        input[type=submit] {
+          background-color: #000000;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
+        
+        .container {
+        width: 50%;
+          border-radius: 5px;
+          background-color: #4ad13e;
+          padding: 10px;
+        }
+        </style>
+        </head>
+        <body>
+
+            <h3>Order Number: 29760734</h3>
+            
+            <div class="container">
+                <form action="https://formspree.io/f/moqpkgzq" method="POST">
+                <label for="fname">First Name</label>
+                <input type="text"  name="firstname" placeholder="Your name.." maxlength="20">
+            <br>
+                <label for="lname">Last Name</label>
+                <input type="text" name="lastname" placeholder="Your last name.." maxlength="20">
+            <br>
+
+            <label for="type">Type:</label><br>
+            <input type="radio" id="T-Shirt" name="type" value="10">
+            <label for="T-Shirt">T-Shirt (10 NIS)</label><br>
+            <input type="radio" id="Undershirt" name="type" value="10">
+            <label for="Undershirt">Undershirt (10 NIS)</label><br>
+            <input type="radio" id="Sweater" name="type" value="20">
+            <label for="Sweater">Sweater (20 NIS)</label><br>
+            <input type="radio" id="Hoddie" name="type" value="30">
+            <label for="Hoddie">Hoddie (30 NIS)</label><br>
+            <input type="radio" id="Coat" name="type" value="50">
+            <label for="Coat">Coat (50 NIS)</label><br>
+            <br>
+
+            <label for="color">Color</label>
+             <select id="color" name="color">
+             <option id="red" name="color" value="0">Red</option>
+             <option id="green" name="color" value="5">Green (+5 NIS)</option>
+             <option id="blue" name="color" value="-2">Blue (-2 NIS)</option>
+             <option id="white" name="color" selected value="0">White</option>
+             </select>
+
+            <br>
+            <label for="type">Size:</label><br>
+            <input type="radio" name="size" id="S" value="0.9">
+            <label for="S">S (10% Discount)</label><br>
+            <input type="radio"  name="size" id="M" value="1">
+            <label for="M">M</label><br>
+            <input type="radio"  name="size" id="L" value="1">
+            <label for="L">L</label><br>
+            <input type="radio"  name="size" id="XL" value="1.1">
+            <label for="XL">XL (10% Extra Payment)</label><br>
+            <br>
+
+            <label >Logo Location: (+3 NIS For Each Logo Added)</label><br>
+            <input type="checkbox" id="Back" name="logo" value="3">
+            <label for="Back">Back</label><br>
+            <input type="checkbox" id="Front" name="logo" value="3">
+            <label for=" Front ">Front</label><br>
+            <input type="checkbox" id="Left Sleeve" name="logo" value="3">
+            <label for=" Left Sleeve ">Left Sleeve</label><br>
+            <input type="checkbox" id="Right Sleeve" name="logo" value="3">
+            <label for="Right Sleeve">Right Sleeve</label><br>
+
+            <br>
+            <label for="address">Address</label><br>
+            <textarea name="address" placeholder="Write something.." rows="10" cols="30"></textarea>
+            <br>
+            <label>
+              Quantity:
+              </label>
+              <input type="text" id="amount" name="amount" placeholder="1" size="5"  value="1"><br>
+              <input type="button" onclick="cnt()" value="calc price" size="4">
+              <div id="resultDiv" >
+                result:
+              </div><br>
+            <input type="reset" value="Delete">
+            <input type="submit" value="Send" onclick="alert('Sent Successfully')";><br><br>
+            <a href="index.html"><input type="button" value="Go Back"></a>
+        </div>
+            </body>
+</html>
